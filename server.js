@@ -1,14 +1,17 @@
 require('dotenv').config();
+
+//puxa os frameworks
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+//usa a string do arquivo .env
 mongoose.connect(process.env.CONNECTIONSTRING, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
-    app.emit('pronto');
+    app.emit('pronto');//isso faz com que o usuário nãe entre antes da conexão acontecer
   })
   .catch(e => console.log(e));
 const session = require('express-session');
-const MongoStore = require('connect-mongo');
+const MongoStore = require('connect-mongo');//const atualizada, tirada o (session)
 const flash = require('connect-flash');
 const routes = require('./routes');
 const path = require('path');
