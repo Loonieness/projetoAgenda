@@ -10,13 +10,14 @@ mongoose.connect(process.env.CONNECTIONSTRING, { useNewUrlParser: true, useUnifi
     app.emit('pronto');//isso faz com que o usuário nãe entre antes da conexão acontecer
   })
   .catch(e => console.log(e));
-const session = require('express-session');
+const session = require('express-session');//salva a sessão na memória
 const MongoStore = require('connect-mongo');//const atualizada, tirada o (session)
 const flash = require('connect-flash');
 const routes = require('./routes');
 const path = require('path');
-const helmet = require('helmet');
-const csrf = require('csurf');
+//lembrar que usar o helmet em localhost só funciona se for em https, senão dá erro em importações e CSS
+const helmet = require('helmet');//para maior segurança
+const csrf = require('csurf');//cria um token random para prevenir um ataque
 const { middlewareGlobal, checkCsrfError, csrfMiddleware } = require('./src/middlewares/middleware');
 
 app.use(helmet());
@@ -31,7 +32,7 @@ const sessionOptions = session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    maxAge: 1000 * 60 * 60 * 24 * 7,
+    maxAge: 1000 * 60 * 60 * 24 * 7, //o cookie dura 7 dias
     httpOnly: true
   }
 });
