@@ -3,7 +3,7 @@ require('dotenv').config();
 //puxa os frameworks
 const express = require('express');
 const app = express();
-const mongoose = require('mongoose');
+const mongoose = require('mongoose');//modela a base de dados
 //usa a string do arquivo .env
 mongoose.connect(process.env.CONNECTIONSTRING, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
