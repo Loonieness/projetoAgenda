@@ -11,6 +11,7 @@ route.get('/', homeController.index);
 
 //Rotas de Login
 route.get('/login/index', loginController.index);//daria para excluir o index se quiser
+route.post('/login/register', loginController.register);
 
 
 module.exports = route;
