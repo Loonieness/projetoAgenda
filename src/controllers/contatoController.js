@@ -66,7 +66,7 @@ exports.delete = async function(req, res) {
 
 
     req.flash('success', 'Contato apagado com sucesso');
-    req.session.save(() => res.redirect(`/contato/index/${contato.contato._id}`)); 
+    req.session.save(() => res.redirect('/')); 
     return;
 }
     

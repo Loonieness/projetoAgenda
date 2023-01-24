@@ -5,7 +5,10 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');//modela a base de dados
 //usa a string do arquivo .env
-mongoose.connect(process.env.CONNECTIONSTRING, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.CONNECTIONSTRING, { 
+  useNewUrlParser: true, 
+  useUnifiedTopology: true,
+  useFindAndModify: false })
   .then(() => {
     app.emit('pronto');//isso faz com que o usuário nãe entre antes da conexão acontecer
   })
