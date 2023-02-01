@@ -19,11 +19,14 @@ const flash = require('connect-flash');
 const routes = require('./routes');
 const path = require('path');
 //lembrar que usar o helmet em localhost só funciona se for em https, senão dá erro em importações e CSS
-const helmet = require('helmet');//para maior segurança
+//const helmet = require('helmet');//para maior segurança
 const csrf = require('csurf');//cria um token random para prevenir um ataque
 const { middlewareGlobal, checkCsrfError, csrfMiddleware } = require('./src/middlewares/middleware');
 
-app.use(helmet());
+//app.use(helmet());
+// se não utilizar o helmet, li um artigo sobre segurança instruindo desativar o cabeçalho X-Powered-By para garantir o mínimo de segurança.
+ 
+app.disable('x-powered-by');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
