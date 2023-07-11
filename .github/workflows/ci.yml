@@ -1,0 +1,22 @@
+name: JoabAlmeida.com CI
+on:
+    push:
+        branches: 
+            - main
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Checkout do Repositorio
+                uses: actions/checkout@v1
+            -   name: Deploy para meu hosting
+                uses: easingthemes/ssh-deploy@main
+                env:
+                        SSH_PRIVATE_KEY: ${{secrets}}
+                        ARGS: "-rlgoDzvc -i --delete"
+                        SOURCE: ""
+                        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+                        REMOTE_USER: ${{ secrets.REMOTE_USER }}
+                        REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
+                        TARGET: ${{ secrets.REMOTE_TARGET }}
